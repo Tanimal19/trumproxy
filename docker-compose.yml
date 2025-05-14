@@ -1,13 +1,14 @@
 services:
   trumproxy:
-    image: trumproxy-dev # 使用現有的 image
+    build: .
+    image: trumproxy-dev
     container_name: trumproxy-dev
-    working_dir: /app
+    ports:
+      - "6666:8080"
+      - "51820:51820/udp"
+      - "5000:5000"
     volumes:
-      - ./app:/app # 將本機的 app 資料夾掛載到 container
-      - ~/.mitmproxy:/root/.mitmproxy # 掛載本機的 .mitmproxy 目錄到容器的 /root/.mitmproxy 目錄
+      - ./app:/app
+    entrypoint: /bin/bash
     stdin_open: true
     tty: true
-    command: ["/bin/bash"] # 進入 bash shell
-    ports:
-      - "8080:8080" # 這裡將容器內的 8080 port 映射到主機的 8080 port

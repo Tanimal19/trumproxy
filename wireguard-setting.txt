@@ -1,0 +1,9 @@
+[Interface]
+PrivateKey = LibIxv8PBnEb2jv2MsGbjCxkD6DFEyiPA5bwM4Svgl4=
+Address = 10.0.0.1/32
+DNS = 10.0.0.53
+
+[Peer]
+PublicKey = HEa+HI/Sb5MYPxEawU/VEvB3715+dmE2qgeHwu7TmlE=
+AllowedIPs = 0.0.0.0/0
+Endpoint = 192.168.1.103:51820

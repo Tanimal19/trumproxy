@@ -1,4 +1,4 @@
-# Trumproxy (CLI ver)
+# Trumproxy
 
 impose tariff on network traffic  
 using [mitmproxy](https://mitmproxy.org/) and [wireguard](https://www.wireguard.com/)

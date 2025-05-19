@@ -1,0 +1,68 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f2f5;
+}
+h1,
+h2 {
+  color: #333;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #fff;
+}
+th,
+td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+th {
+  background-color: #eee;
+}
+.badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+}
+.delayed {
+  background-color: #facc15;
+  color: #000;
+}
+.dropped {
+  background-color: #ef4444;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  flex-direction: column;
+}
+.form-group button {
+  width: 100px;
+}
+
+.form-inline {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+.form-inline label {
+  margin-right: 10px;
+}
+.form-inline select {
+  flex: 1;
+}
+
+#flag-display img {
+  vertical-align: middle;
+  margin-right: 5px;
+}

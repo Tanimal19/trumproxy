@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>封包與關稅規則管理</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="/static/style.css"
+    />
+  </head>
+  <body>
+    <h1>關稅規則管理</h1>
+
+    <div class="form-group">
+      <div class="form-inline">
+        <label>選擇國家:</label>
+        <select id="country-select" placeholder="搜尋國家..."></select>
+      </div>
+      <div class="form-inline">
+        <label>丟棄封包 (drop):</label>
+        <input type="checkbox" id="drop-checkbox" />
+      </div>
+      <div class="form-inline">
+        <label>延遲百分比:</label>
+        <input
+        type="number"
+        id="delay-input"
+        min="0"
+        max="100"
+        value="0"
+        />
+      </div>
+      <button onclick="addRule()">新增規則</button>
+    </div>
+
+    <div id="flag-display"></div>
+    
+    <h2>目前規則</h2>
+    <table id="rules-table">
+      <thead>
+        <tr>
+          <th>國家</th>
+          <th colspan="2">規則內容</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h2 style="margin-top: 40px">封包監控</h2>
+    <table id="packet-table">
+      <thead>
+        <tr>
+          <th>Packet ID</th>
+          <th>來源 IP</th>
+          <th>來源國</th>
+          <th>目的 IP</th>
+          <th>目的國</th>
+          <th>時間</th>
+          <th>狀態</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script src="/static/countries.js"></script>
+  </body>
+</html>

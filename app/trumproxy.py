@@ -1,3 +1,5 @@
+# type: ignore
+
 import logging
 import asyncio
 from dataclasses import dataclass
@@ -56,6 +58,11 @@ class RetainedResponse:
     """
     The IP address of the client.
     """
+
+    to_country_code: str
+    """
+    The country code of the client.
+    """
     
     recv_time: float
     """
@@ -87,6 +94,10 @@ class TrumproxyAddon:
             from_ip = flow.server_conn.peername[0]
             country = self.geo_identifier.country(from_ip)
             from_country_code = country.country.iso_code
+
+            to_ip = flow.client_conn.peername[0]
+            to_country = self.geo_identifier.country(to_ip)
+            to_country_code = to_country.country.iso_code
             
             if from_country_code is None:
                 self.f.write(f"[ERROR] No country code for {from_ip}\n")
@@ -113,7 +124,8 @@ class TrumproxyAddon:
                 size=len(flow.response.content),
                 from_ip=from_ip,
                 from_country_code=from_country_code,
-                to_client_ip=flow.client_conn.peername[0],
+                to_client_ip=to_ip,
+                to_country_code=to_country_code,
                 recv_time=flow.response.timestamp_end,
                 rtt_time=rtt_time,
                 retain_time=retain_time,

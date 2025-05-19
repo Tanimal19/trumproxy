@@ -3,7 +3,57 @@ import threading
 from mitmproxy.tools.dump import DumpMaster
 from mitmproxy.options import Options
 from trumproxy import proxy_instance
+from flask_app import app, save_rules
 
+
+def run_flask():
+    app.run(host="0.0.0.0", port=5000, debug=False)
+
+def control():
+    print("Welcome to Trumproxy Control CLI.")
+    help_message = """usage:
+        rules: show all tariff rules
+        retain: show all retained traffic
+        set <country> <rate> <is_dropped>: set tariff rule for a country
+        remove <country>: remove tariff rule for a country
+        exit: exit the control CLI
+        help: show this help message"""
+    print(help_message)
+
+    while True:
+        try:
+            cmd = input("Enter command: ").strip()
+            if cmd == "rules":
+                rules = proxy_instance.get_tariff_rules()
+                for country, rule in rules.items():
+                    print(f"{country}: {rule.rate}%, dropped: {rule.dropped}")
+            elif cmd == "retain":
+                traffic = proxy_instance.get_retain_traffic()
+                for id, t in traffic.items():
+                    print(f"{id}: {t.request_url}, size: {t.size} bytes, from: {t.from_ip}, to: {t.to_client_ip}, rtt: {t.rtt_time} ms, retain time: {t.retain_time} s")
+            elif cmd.startswith("set"):
+                _, country, rate, dropped = cmd.split()
+                proxy_instance.set_tariff_rule(
+                    country,
+                    int(rate),
+                    dropped.lower() == "true"
+                )
+                save_rules()
+                print(f"Set rule: {country} -> {rate}%, dropped: {dropped}")
+            elif cmd.startswith("remove"):
+                _, country = cmd.split()
+                proxy_instance.remove_tariff_rule(country)
+                save_rules()
+                print(f"Removed rule for {country}")
+            elif cmd == "exit":
+                print("Exiting CLI...")
+                break
+            elif cmd == "help":
+                print(help_message)
+            else:
+                print("Unknown command. Type 'help' for usage.")
+        except Exception as e:
+            print(f"[Error] {e}")
 
 async def run_proxy():
     opts = Options(
@@ -14,64 +64,23 @@ async def run_proxy():
     m = DumpMaster(opts, with_termlog=False, with_dumper=False)
     m.addons.add(proxy_instance)
 
+    print("Starting mitmproxy...")
+
     await m.run()
 
-def control():
-
-    print("Welcome to Trumproxy Control CLI.")
-    help_message = """usage:
-            rules: show all tariff rules
-            retain: show all retained traffic
-            set <country> <rate> <is_dropped>: set tariff rule for a country
-            remove <country>: remove tariff rule for a country
-            exit: exit the control CLI
-            help: show this help message"""
-    print(help_message)
-
-    while True:
-        cmd = input("Enter command: ").strip()
-        
-        if cmd == "rules":
-            map = proxy_instance.get_tariff_rules()
-            for country, rule in map.items():
-                print(f"{country}: {rule.rate}%, dropped: {rule.dropped}")
-        
-        elif cmd == "retain":
-            traffics = proxy_instance.get_retain_traffic()
-            for id, traffic in traffics.items():
-                print(f"{id}: {traffic.request_url}, size: {traffic.size} bytes, from: {traffic.from_ip}, to: {traffic.to_client_ip}, rtt: {traffic.rtt_time} ms, retain time: {traffic.retain_time} s")
-
-        elif cmd.startswith("set"):
-            try:
-                _, country, rate, is_droppped = cmd.split()
-                proxy_instance.set_tariff_rule(
-                    country,
-                    float(rate),
-                    is_droppped.lower() == "true",
-                )
-                print(f"Set {country} tariff to {rate}%, dropped: {is_droppped}")
-            except:
-                print("Invalid usage.")
-
-        elif cmd.startswith("remove"):
-            try:
-                _, country = cmd.split()
-                proxy_instance.remove_tariff_rule(country)
-                print(f"Removed {country} tariff")
-            except:
-                print("Invalid usage.")
-        
-        elif cmd == "exit":
-            print("Exiting...")
-            break
-
-        elif cmd == "help":
-            print(help_message)
-
-
 if __name__ == "__main__":
-    control_thread = threading.Thread(target=control)
-    control_thread.daemon = True
-    control_thread.start()
+    # Start Flask in a thread
+    flask_thread = threading.Thread(target=run_flask)
+    flask_thread.daemon = True
+    flask_thread.start()
+    
+    # Start CLI in a thread
+    # cli_thread = threading.Thread(target=control)
+    # cli_thread.daemon = True
+    # cli_thread.start()
 
-    asyncio.run(run_proxy())
+    # Start mitmproxy in asyncio main loop
+    try:
+        asyncio.run(run_proxy())
+    except KeyboardInterrupt:
+        print("Shutting down proxy...")

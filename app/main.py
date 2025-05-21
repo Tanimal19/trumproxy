@@ -9,6 +9,7 @@ from flask_app import app, save_rules
 def run_flask():
     app.run(host="0.0.0.0", port=5000, debug=False)
 
+
 def control():
     print("Welcome to Trumproxy Control CLI.")
     help_message = """usage:
@@ -30,13 +31,13 @@ def control():
             elif cmd == "retain":
                 traffic = proxy_instance.get_retain_traffic()
                 for id, t in traffic.items():
-                    print(f"{id}: {t.request_url}, size: {t.size} bytes, from: {t.from_ip}, to: {t.to_client_ip}, rtt: {t.rtt_time} ms, retain time: {t.retain_time} s")
+                    print(
+                        f"{id}: {t.request_url}, size: {t.size} bytes, from: {t.from_ip}, to: {t.to_client_ip}, rtt: {t.rtt_time} ms, retain time: {t.retain_time} s"
+                    )
             elif cmd.startswith("set"):
                 _, country, rate, dropped = cmd.split()
                 proxy_instance.set_tariff_rule(
-                    country,
-                    int(rate),
-                    dropped.lower() == "true"
+                    country, int(rate), dropped.lower() == "true"
                 )
                 save_rules()
                 print(f"Set rule: {country} -> {rate}%, dropped: {dropped}")
@@ -55,6 +56,7 @@ def control():
         except Exception as e:
             print(f"[Error] {e}")
 
+
 async def run_proxy():
     opts = Options(
         mode=["wireguard:./wg.conf"],
@@ -68,16 +70,17 @@ async def run_proxy():
 
     await m.run()
 
+
 if __name__ == "__main__":
     # Start Flask in a thread
-    flask_thread = threading.Thread(target=run_flask)
-    flask_thread.daemon = True
-    flask_thread.start()
-    
+    # flask_thread = threading.Thread(target=run_flask)
+    # flask_thread.daemon = True
+    # flask_thread.start()
+
     # Start CLI in a thread
-    # cli_thread = threading.Thread(target=control)
-    # cli_thread.daemon = True
-    # cli_thread.start()
+    cli_thread = threading.Thread(target=control)
+    cli_thread.daemon = True
+    cli_thread.start()
 
     # Start mitmproxy in asyncio main loop
     try:

@@ -11,16 +11,11 @@ docker-compose exec trumproxy /bin/bash    # exec into container
 # in container
 python main.py
 ```
-then you should able to use the cli command
-```
-get tariff                           - get all tariff rules
-get retain                           - get currently retained packets
-set <country code> <tariff rate>     - set tariff
-remove <country code>                - remove tariff
-exit                                 - close the cli (you still need to ctrl-c to close the proxy)
-```
+
 
 ## For client
+make sure your client and the server is connnected to the same LAN (wifi).  
+
 install wireguard and set the config as
 ```
 [Interface]
@@ -31,10 +26,14 @@ DNS = 10.0.0.53
 [Peer]
 PublicKey = HEa+HI/Sb5MYPxEawU/VEvB3715+dmE2qgeHwu7TmlE=
 AllowedIPs = 0.0.0.0/0
-Endpoint = 192.168.1.103:51820
+Endpoint = {change to your server ip}:51820
 ```
 
 after connecting, go to mitm.it and follow the steps
+
+## Troubleshooting
+### How to see my server ip?
+If running on windows, go to Powershell and type `ipconfig`, your server ip is the IPv4 address under the "Wifi" section.
 
 ## For Developer
 for python functions to control trumproxy, please refer to `trumproxy.py`

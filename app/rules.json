@@ -1,4 +1,11 @@
 {
-  "rule_id_map": {},
-  "rules": {}
+  "rule_id_map": {
+    "3": "US"
+  },
+  "rules": {
+    "US": {
+      "rate": 50,
+      "dropped": false
+    }
+  }
 }

@@ -28,6 +28,7 @@ class TariffRule:
     To drop the traffic or not. If True, the rate is ignored.
     """
 
+
 @dataclass
 class RetainedResponse:
     """
@@ -38,12 +39,12 @@ class RetainedResponse:
     """
     The url being request.
     """
-    
+
     size: int
     """
     The size of the response.
     """
-    
+
     from_ip: str
     """
     The IP address of the server.
@@ -63,12 +64,12 @@ class RetainedResponse:
     """
     The country code of the client.
     """
-    
+
     recv_time: float
     """
     The time when the response was received.
     """
-    
+
     rtt_time: float
     """
     The round trip time of the request.
@@ -78,7 +79,6 @@ class RetainedResponse:
     """
     The time to retain the response.
     """
-
 
 
 class TrumproxyAddon:
@@ -96,17 +96,18 @@ class TrumproxyAddon:
             from_country_code = country.country.iso_code
 
             to_ip = flow.client_conn.peername[0]
-            to_country = self.geo_identifier.country(to_ip)
-            to_country_code = to_country.country.iso_code
-            
+            # to_country = self.geo_identifier.country(to_ip)
+            to_country_code = None
+
             if from_country_code is None:
                 self.f.write(f"[ERROR] No country code for {from_ip}\n")
                 return
 
             if from_country_code not in self.tariff_rules:
-                self.f.write(f"[PASS] No tariff for {from_ip} (country: {from_country_code})\n")
+                self.f.write(
+                    f"[PASS] No tariff for {from_ip} (country: {from_country_code})\n"
+                )
                 return
-            
 
             rule: TariffRule = self.tariff_rules[from_country_code]
 
@@ -116,8 +117,10 @@ class TrumproxyAddon:
                 return
 
             rtt_time = flow.response.timestamp_end - flow.request.timestamp_start
-            retain_time = rtt_time * (rule.rate / 100)
-            self.f.write(f"[RETAIN] {from_ip} (country: {from_country_code}) for {retain_time}ms\n")
+            retain_time = rtt_time * (rule.rate)
+            self.f.write(
+                f"[RETAIN] {from_ip} (country: {from_country_code}) for {retain_time}ms\n"
+            )
 
             self.retain_responses[flow.id] = RetainedResponse(
                 request_url=flow.request.pretty_url,
@@ -130,7 +133,7 @@ class TrumproxyAddon:
                 rtt_time=rtt_time,
                 retain_time=retain_time,
             )
-            
+
             asyncio.create_task(self.tariffed_resume(flow, retain_time))
             flow.intercept()
 
@@ -152,7 +155,7 @@ class TrumproxyAddon:
         Get all tariff rules.
         """
         return self.tariff_rules
-    
+
     def get_retain_traffic(self) -> dict[str, RetainedResponse]:
         """
         Get the retained traffic.

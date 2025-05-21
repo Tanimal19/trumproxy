@@ -1,75 +1,65 @@
+// Setup country select field
 document.addEventListener("DOMContentLoaded", async () => {
-  const select = document.getElementById("country-select");
-  const flagDisplay = document.getElementById("flag-display");
+  const flagDisplayEl = document.getElementById("flag-display");
 
   try {
-    // 取得國家資料
     const res = await fetch("https://restcountries.com/v3.1/all");
     const countries = await res.json();
 
-    // 排序並加入選單
-    countries
-      .sort((a, b) => a.name.common.localeCompare(b.name.common))
-      .forEach((country) => {
-        const option = document.createElement("option");
-        option.value = country.cca2; // 2-letter country code
-        option.textContent = country.name.common;
-        option.dataset.flag = country.flags.svg;
-        select.appendChild(option);
-      });
-
-    // 啟用 Tom Select
-    const tomSelect = new TomSelect(select, {
+    new TomSelect("#country-select", {
       maxItems: 1,
+      maxOptions: null,
+      valueField: "value",
+      searchField: "name",
+      options: countries
+        .sort((a, b) => a.name.common.localeCompare(b.name.common))
+        .map((country) => ({
+          value: country.cca2,
+          name: country.name.common,
+          flag: country.flags.svg,
+        })),
       render: {
         option: function (data, escape) {
-          return `<div>
-                    <img src="${escape(
-                      data.flag
-                    )}" style="width:20px;height:15px;margin-right:5px;">
-                    ${escape(data.text)}
-                  </div>`;
+          return `<div class="option-container">
+            <img src="${escape(
+              data.flag
+            )}" alt="Flag" style="width:20px;height:14px;vertical-align:middle;">
+            ${escape(data.name)}
+          </div>`;
         },
         item: function (data, escape) {
-          return `<div>
-                    <img src="${escape(
-                      data.flag
-                    )}" style="width:20px;height:15px;margin-right:5px;">
-                    ${escape(data.text)}
-                  </div>`;
+          return `<div style="background-color: #f0f0f0; padding: 3px; border-radius: 2px;">
+            <img src="${escape(
+              data.flag
+            )}" alt="Flag" style="width:20px;height:14px;vertical-align:middle;">
+            ${escape(data.name)}
+          </div>`;
         },
       },
       onChange: function (value) {
         const selected = this.options[value];
         if (selected && selected.flag) {
-          flagDisplay.innerHTML = `
+          flagDisplayEl.innerHTML = `
             <img src="${selected.flag}" alt="Flag" style="width:100px;">
-            <p>${selected.text}</p>
+            <p>${selected.name}</p>
           `;
         } else {
-          flagDisplay.innerHTML = "";
+          flagDisplayEl.innerHTML = "";
         }
       },
     });
-
-    // 將 flag URL 存入 TomSelect 的 options
-    Object.values(tomSelect.options).forEach((opt) => {
-      const optionEl = select.querySelector(`option[value="${opt.value}"]`);
-      if (optionEl) {
-        opt.flag = optionEl.dataset.flag;
-      }
-    });
   } catch (e) {
     console.error("載入國家資料失敗：", e);
-    flagDisplay.textContent = "載入失敗，請稍後再試。";
+    flagDisplayEl.textContent = "載入失敗，請稍後再試。";
   }
 });
 
+// Rules
+
 let mockRules = [
-  { rule_id: 1, country_code: "US", delay_percentage: 30, drop: false },
-  { rule_id: 2, country_code: "CN", delay_percentage: 100, drop: true },
+  { country_code: "US", delay_percentage: 30, drop: false },
+  { country_code: "CN", delay_percentage: 100, drop: true },
 ];
-let nextRuleId = 3;
 
 function displayRules(rules) {
   const tbody = document.querySelector("#rules-table tbody");
@@ -85,8 +75,8 @@ function displayRules(rules) {
 <td><img src="${countryInfo.flag}" style="width:20px;height:14px;vertical-align:middle;"> ${countryInfo.name}</td>
 <td colspan="2">${displayText}</td>
 <td>
-  <button onclick="editRule(${rule.rule_id})">修改</button>
-  <button onclick="deleteRule(${rule.rule_id})">刪除</button>
+  <button onclick="editRule('${rule.country_code}')">修改</button>
+  <button onclick="deleteRule('${rule.country_code}')" class="destructive">刪除</button>
 </td>`;
     tbody.appendChild(tr);
   });
@@ -101,6 +91,7 @@ function fetchRules() {
     .catch(() => {
       console.warn("使用 mockRules 模擬規則列表");
       displayRules(mockRules);
+      console.warn("載入規則失敗");
     });
 }
 
@@ -109,32 +100,46 @@ function addRule() {
   const drop = document.getElementById("drop-checkbox").checked;
   const delayInput = document.getElementById("delay-input");
   const delay = drop ? 0 : parseInt(delayInput.value);
+
   if (!country) return alert("請選擇國家");
+
   const body = JSON.stringify({
     country_code: country,
     delay_percentage: delay,
     drop,
   });
-  fetch("/api/rules", {
+
+  const country_name = getCountryName(country);
+
+  fetch(`/api/rules/${country}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body,
   })
     .then((res) => (res.ok ? res.json() : Promise.reject()))
-    .then(() => fetchRules())
-    .catch(() => {
-      console.warn("使用 mockRules 模擬新增");
-      mockRules.push({
-        rule_id: nextRuleId++,
-        country_code: country,
-        delay_percentage: delay,
-        drop,
-      });
+    .then(() => {
       fetchRules();
+      if (drop) {
+        changeNewsContext(
+          `TRUMP BLOCKS ${country_name}'S PACKET FOREVER`,
+          "Theyre out. Totally blocked. End of story."
+        );
+      } else {
+        changeNewsContext(
+          `TRUMP ANNOUNCES ${delay}% NEW TARIFF ON ${country_name}`,
+          `They've been robbing us blind — not anymore. ${country_name}'s going to pay, big league.`
+        );
+      }
+    })
+    .catch(() => {
+      changeNewsContext(
+        "TRUMP BLAME POLITICIANS FOR ACTION FAILURE",
+        "Unbelievable. We had it ready — but they stabbed people in the back."
+      );
     });
 }
 
-function editRule(rule_id) {
+function editRule(country_code) {
   // 先移除可能已存在的舊 modal
   const existingModal = document.getElementById("edit-rule-modal");
   if (existingModal) {
@@ -157,23 +162,33 @@ function editRule(rule_id) {
 
   // Modal 內容
   modal.innerHTML = `
-    <h3 style="margin-top:0;">編輯規則 (ID: ${rule_id})</h3>
-    <div style="margin-bottom: 15px;">
-      <label>
-        <input type="checkbox" id="modal-drop-checkbox"> 丟棄封包 (Drop Packets)
-      </label>
-    </div>
-    <div style="margin-bottom: 20px;">
-      <label for="modal-delay-input">延遲百分比:</label>
-      <input type="number" id="modal-delay-input" min="0" style="width: 80px; margin-left: 5px;">
-    </div>
     <div style="text-align: right;">
-      <button id="modal-confirm-button" style="margin-right: 10px; padding: 8px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">確認</button>
-      <button id="modal-cancel-button" style="padding: 8px 15px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">取消</button>
+      <button id="modal-cancel-button" class="close-button"></button>
+    </div>
+    <div id="form-group">
+      <div style="font-size: larger;font-weight: bold;">修改規則 (${country_code})</div>
+      <div class="form-inline">
+        <label>丟棄封包</label>
+        <input type="checkbox" id="modal-drop-checkbox" />
+      </div>
+      <div class="form-inline">
+        <label>延遲百分比</label>
+        <input
+        type="number"
+        id="modal-delay-input"
+        min="0"
+        max="100"
+        value="0"
+        />
+      </div>
+    </div>
+    <div style="text-align: right;margin-top: 30px;">
+      <button id="modal-confirm-button">確認</button>
     </div>
   `;
 
   document.body.appendChild(modal);
+  document.body.classList.add("modal-open");
 
   // 獲取 modal 內的元素
   const dropCheckbox = modal.querySelector("#modal-drop-checkbox");
@@ -203,57 +218,72 @@ function editRule(rule_id) {
       newDelay = delayValue;
     }
 
-    updateRule(rule_id, newDelay, newDrop);
+    updateRule(country_code, newDelay, newDrop);
     modal.remove(); // 關閉 modal
+    document.body.classList.remove("modal-open");
   });
 
   // 取消按鈕事件
   cancelButton.addEventListener("click", () => {
     modal.remove(); // 關閉 modal
+    document.body.classList.remove("modal-open");
   });
-
-  // 可選：點擊 modal 外部關閉 (如果需要)
-  // modal.addEventListener('click', function(event) {
-  //   if (event.target === modal) {
-  //     modal.remove();
-  //   }
-  // });
 }
 
-function updateRule(rule_id, delay_percentage, drop) {
+function updateRule(country_code, delay_percentage, drop) {
   const body = JSON.stringify({
     delay_percentage: delay_percentage,
     drop,
   });
-  fetch(`/api/rules/${rule_id}`, {
+
+  const country_name = getCountryName(country_code);
+
+  fetch(`/api/rules/${country_code}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body,
   })
     .then((res) => (res.ok ? res.json() : Promise.reject()))
-    .then(() => fetchRules())
-    .catch(() => {
-      console.warn("使用 mockRules 模擬修改");
-      const rule = mockRules.find((r) => r.rule_id === rule_id);
-      if (rule) {
-        rule.delay_percentage = delay_percentage;
-        rule.drop = drop;
-      }
+    .then(() => {
       fetchRules();
+      if (drop) {
+        changeNewsContext(
+          `TRUMP BLOCKS ${country_name}'S PACKET FOREVER`,
+          "We're getting rid of the garbage. We deserves strong, smart local network!"
+        );
+      } else {
+        changeNewsContext(
+          `TRUMP ANNOUNCES ${delay_percentage}% NEW TARIFF ON ${country_name}`,
+          `The old rules were pathetic. We're bringing in something tremendous!`
+        );
+      }
+    })
+    .catch(() => {
+      changeNewsContext(
+        "TRUMP BLAME POLITICIANS FOR ACTION FAILURE",
+        "Unbelievable. We had it ready — but they stabbed people in the back."
+      );
     });
 }
 
-function deleteRule(rule_id) {
+function deleteRule(country_code) {
   if (!confirm("確認刪除此規則？")) return;
-  fetch(`/api/rules/${rule_id}`, {
+  fetch(`/api/rules/${country_code}`, {
     method: "DELETE",
   })
     .then((res) => (res.ok ? res.json() : Promise.reject()))
-    .then(() => fetchRules())
-    .catch(() => {
-      console.warn("使用 mockRules 模擬刪除");
-      mockRules = mockRules.filter((r) => r.rule_id !== rule_id);
+    .then(() => {
       fetchRules();
+      changeNewsContext(
+        `NO MORE BLOCKS — FRIENDS NOW!`,
+        "We're removing the rules and opening the doors. Local leads, Local wins."
+      );
+    })
+    .catch(() => {
+      changeNewsContext(
+        "TRUMP BLAME POLITICIANS FOR ACTION FAILURE",
+        "Unbelievable. We had it ready — but they stabbed people in the back."
+      );
     });
 }
 
@@ -262,39 +292,44 @@ function fetchPackets() {
     method: "GET",
   })
     .then((res) => res.json())
-    .then((data) => displayPackets(data.packets))
+    .then((data) => displayPackets(data.packets));
 }
 
 function displayPackets(packets) {
   const tbody = document.querySelector("#packet-table tbody");
-  tbody.innerHTML = "";
+  // tbody.innerHTML = ""; don't clear the table, just append new rows
+
+  console.log("Packets:", packets);
+
   packets.forEach((p) => {
-    console.log(p);
     const sourceInfo = countryMap[p.source_country] || {
       name: p.source_country,
       flag: "",
     };
-    const destInfo = countryMap[p.destination_country] || {
-      name: p.destination_country,
-      flag: "",
-    };
     const statusText = p.status === "dropped" ? "丟棄" : "扣留中";
+
     const tr = document.createElement("tr");
+
     tr.innerHTML = `
-<td>${p.packet_id}</td>
-<td>${p.size}</td>
+<td>${p.url}</td>
 <td>${p.source_ip}</td>
 <td><img src="${
       sourceInfo.flag
     }" style="width:20px;height:14px;vertical-align:middle;"> ${
       sourceInfo.name
     }</td>
+<td>${p.size}</td>
 <td>${new Date(p.timestamp).toLocaleString()}</td>
 <td>${p.rtt_time}ms</td>
 <td>${p.retain_time}s</td>
 <td><span class="badge ${p.status}">${statusText}</span></td>`;
     tbody.appendChild(tr);
   });
+}
+
+function clearPackets() {
+  const tbody = document.querySelector("#packet-table tbody");
+  tbody.innerHTML = "";
 }
 
 let countryMap = {};
@@ -321,3 +356,16 @@ document
 
 setInterval(fetchPackets, 5000);
 loadCountryMap();
+
+function changeNewsContext(headline, revolving) {
+  const newsHeadline = document.getElementById("news-headline");
+  const newsRevolving = document.getElementById("news-revolving");
+
+  newsHeadline.textContent = headline;
+  newsRevolving.textContent = revolving;
+}
+
+function getCountryName(countryCode) {
+  const country = countryMap[countryCode];
+  return country ? country.name.toUpperCase() : countryCode;
+}

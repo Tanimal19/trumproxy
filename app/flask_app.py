@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-from trumproxy import proxy_instance
+from trumproxy import proxy_instance, TariffRule
 from flask_cors import CORS
 import json
 import os
@@ -9,151 +9,108 @@ RULES_FILE = "rules.json"
 app = Flask(__name__)
 CORS(app)
 
-rule_id_counter = 1
-rule_id_map = {}  # rule_id -> country_code
-country_code_map = {}  # country_code -> rule_id
 
+# Load rules from the JSON file
+if not os.path.exists(RULES_FILE):
+    with open(RULES_FILE, "w") as f:
+        json.dump({}, f, indent=2)
 
-def sync_rule_ids():
-    global rule_id_counter
-    for country_code in proxy_instance.get_tariff_rules():
-        if country_code not in country_code_map:
-            rule_id = rule_id_counter
-            rule_id_map[rule_id] = country_code
-            country_code_map[country_code] = rule_id
-            rule_id_counter += 1
+with open(RULES_FILE, "r") as f:
+    data = json.load(f)
+
+for country_code, rule_data in data.items():
+    proxy_instance.set_tariff_rule(
+        country_code, tariff=rule_data["rate"], dropped=rule_data["dropped"]
+    )
 
 
 def save_rules():
-    sync_rule_ids()
     data = {
-        "rule_id_map": {str(k): v for k, v in rule_id_map.items()},
-        "rules": {
-            country: {"rate": rule.rate, "dropped": rule.dropped}
-            for country, rule in proxy_instance.get_tariff_rules().items()
-        },
+        country: {"rate": rule.rate, "dropped": rule.dropped}
+        for country, rule in proxy_instance.get_tariff_rules().items()
     }
     with open(RULES_FILE, "w") as f:
         json.dump(data, f, indent=2)
 
 
-def load_rules():
-    global rule_id_counter, rule_id_map, country_code_map
-
-    if not os.path.exists(RULES_FILE):
-        return
-
-    with open(RULES_FILE, "r") as f:
-        data = json.load(f)
-
-    rule_id_map = {int(k): v for k, v in data.get("rule_id_map", {}).items()}
-    country_code_map = {v: k for k, v in rule_id_map.items()}
-    rule_id_counter = max(rule_id_map.keys(), default=0) + 1
-
-    for country_code, rule_data in data.get("rules", {}).items():
-        proxy_instance.set_tariff_rule(
-            country_code, tariff=rule_data["rate"], dropped=rule_data["dropped"]
-        )
-
-
+# Endpoints
 @app.route("/", methods=["GET"])
 def home():
     return render_template("index.html")
 
 
-@app.route("/api/rules", methods=["POST"])
-def add_rule():
-    global rule_id_counter
+@app.route("/api/rules/<country_code>", methods=["POST"])
+def add_rule(country_code):
     data = request.json
-
     if not data:
         return jsonify({"error": "Invalid JSON"}), 400
 
-    country_code = data.get("country_code")
+    rule_map = proxy_instance.get_tariff_rules()
+    if country_code in rule_map:
+        return jsonify({"error": "Rule already exist"}), 404
+
     delay_percentage = data.get("delay_percentage", 0)
     drop = data.get("drop", False)
 
-    if not country_code:
-        return jsonify({"error": "Missing country_code"}), 400
-
     proxy_instance.set_tariff_rule(country_code, delay_percentage, drop)
-    rule_id = rule_id_counter
-    rule_id_map[rule_id] = country_code
-    country_code_map[country_code] = rule_id
-    rule_id_counter += 1
     save_rules()
-    return jsonify({"message": "Rule added successfully", "rule_id": rule_id})
+
+    return jsonify({"message": "Rule added successfully"}), 200
 
 
-@app.route("/api/rules/<int:rule_id>", methods=["PUT"])
-def update_rule(rule_id):
+@app.route("/api/rules/<country_code>", methods=["PUT"])
+def update_rule(country_code):
     data = request.json
-
     if not data:
         return jsonify({"error": "Invalid JSON"}), 400
 
     delay_percentage = data.get("delay_percentage", 0)
     drop = data.get("drop", False)
 
-    if rule_id not in rule_id_map:
-        return jsonify({"error": "Rule ID not found"}), 404
-
-    country_code = rule_id_map[rule_id]
     proxy_instance.set_tariff_rule(country_code, delay_percentage, drop)
     save_rules()
-    return jsonify({"message": "Rule updated successfully"})
+
+    return jsonify({"message": "Rule updated successfully"}), 200
 
 
-@app.route("/api/rules/<int:rule_id>", methods=["DELETE"])
-def delete_rule(rule_id):
-    if rule_id not in rule_id_map:
-        return jsonify({"error": "Rule ID not found"}), 404
-
-    country_code = rule_id_map.pop(rule_id)
-    country_code_map.pop(country_code, None)
+@app.route("/api/rules/<country_code>", methods=["DELETE"])
+def delete_rule(country_code):
     proxy_instance.remove_tariff_rule(country_code)
     save_rules()
-    return jsonify({"message": "Rule deleted successfully"})
+
+    return jsonify({"message": "Rule deleted successfully"}), 200
 
 
 @app.route("/api/rules", methods=["GET"])
 def get_rules():
-    rules = []
-    for country_code, rule in proxy_instance.get_tariff_rules().items():
-        rule_id = country_code_map.get(country_code)
-        if rule_id is not None:
-            rules.append(
-                {
-                    "rule_id": rule_id,
-                    "country_code": country_code,
-                    "delay_percentage": rule.rate,
-                    "drop": rule.dropped,
-                }
-            )
-        else:
-            print("big trouble")
+    rules = [
+        {
+            "country_code": country_code,
+            "delay_percentage": rule.rate,
+            "drop": rule.dropped,
+        }
+        for country_code, rule in proxy_instance.get_tariff_rules().items()
+    ]
     return jsonify({"rules": rules})
 
 
 @app.route("/api/packets", methods=["GET"])
 def get_packets():
-    packets = []
-    for pid, packet in proxy_instance.get_retain_traffic().items():
-        packets.append(
-            {
-                "packet_id": pid,
-                "size": packet.size,
-                "source_ip": packet.from_ip,
-                "source_country": packet.from_country_code,
-                "timestamp": packet.recv_time,
-                "rtt_time": packet.rtt_time,
-                "retain_time": packet.retain_time,
-                "status": "dropped" if packet.retain_time <= 0 else "delayed",
-                "applied_rule_id": country_code_map.get(packet.from_country_code),
-            }
-        )
-    print("packets:", jsonify(packets))
-    return jsonify({"packets": packets})
 
+    packets = [
+        {
+            "packet_id": flow_id,
+            "url": packet.request_url,
+            "size": packet.size,
+            "source_ip": packet.from_ip,
+            "source_country": packet.from_country_code,
+            "recv_time": packet.recv_time,
+            "rtt_time": packet.rtt_time,
+            "retain_time": packet.retain_time,
+            "status": packet.status,
+        }
+        for flow_id, packet in proxy_instance.get_cached_packets().items()
+    ]
+    proxy_instance.clean_cached_packets()
 
-load_rules()
+    return jsonify({"packets": packets}), 200

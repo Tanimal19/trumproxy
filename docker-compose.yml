@@ -1,8 +1,8 @@
 services:
   trumproxy:
     build: .
-    image: trumproxy-dev
-    container_name: trumproxy-dev
+    image: trumproxy
+    container_name: trumproxy
     ports:
       - "6666:8080"
       - "51820:51820/udp"

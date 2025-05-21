@@ -22,6 +22,22 @@ td {
 th {
   background-color: #eee;
 }
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
+}
+
+.destructive {
+  background-color: #f44336;
+}
+
 .badge {
   padding: 4px 8px;
   border-radius: 6px;
@@ -33,19 +49,26 @@ th {
   color: #000;
 }
 .dropped {
-  background-color: #ef4444;
+  background-color: #f44336;
 }
 
-.form-group {
-  margin-bottom: 10px;
+
+#container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
   width: 100%;
+}
+
+#form-group {
+  margin-bottom: 10px;
+  width: fit-content;
   display: flex;
   align-items: start;
   gap: 10px;
   flex-direction: column;
-}
-.form-group button {
-  width: 100px;
 }
 
 .form-inline {
@@ -57,12 +80,103 @@ th {
 }
 .form-inline label {
   margin-right: 10px;
-}
-.form-inline select {
-  flex: 1;
+  width: 100px;
+  height: fit-content;
 }
 
-#flag-display img {
-  vertical-align: middle;
-  margin-right: 5px;
+.ts-wrapper {
+  width: 300px;
+}
+.ts-control {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+}
+.ts-dropdown{
+   width: 300px
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: #ccc;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: grid;
+  place-content: center;
+  translate: 0 1px;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: #007bff;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="number"] {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  translate: 0 1px;
+}
+
+.close-button {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #ccc; /* Adjust color as needed */
+}
+
+.close-button::before,
+.close-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 2px;
+  background-color: #7a7a7a; /* Adjust color as needed */
+}
+
+.close-button::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-button::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+
+#news-headline {
+  position: absolute;
+  top: 383px;
+  left: 64px;
+  font-weight: 700;
+  font-size: 24px;
+  font-family: "Roboto Condensed", sans-serif;
+  letter-spacing: -0.5px;
+}
+
+#news-revolving {
+  position: absolute;
+  top: 412px;
+  left: 67px;
+  font-weight: 400;
+  font-size: 12px;
+  font-family: sans-serif;
+  color: #e8e8e8;
 }

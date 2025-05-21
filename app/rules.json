@@ -1,9 +1,9 @@
 {
   "rule_id_map": {
-    "3": "US"
+    "1": "JP"
   },
   "rules": {
-    "US": {
+    "JP": {
       "rate": 50,
       "dropped": false
     }

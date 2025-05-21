@@ -126,11 +126,11 @@ class TrumproxyAddon:
                 retain_time=retain_time,
             )
 
-            asyncio.create_task(self.tariffed_resume(flow, retain_time))
+            asyncio.create_task(self.retain_flow(flow, retain_time))
             flow.intercept()
 
         except Exception as e:
-            self.f.write(f"[Error] {e}")
+            self.f.write(f"[Error] {e}\n")
 
     def done(self):
         self.f.close()

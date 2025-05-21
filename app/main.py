@@ -78,9 +78,9 @@ if __name__ == "__main__":
     flask_thread.start()
 
     # Start CLI in a thread
-    # cli_thread = threading.Thread(target=control)
-    # cli_thread.daemon = True
-    # cli_thread.start()
+    cli_thread = threading.Thread(target=control)
+    cli_thread.daemon = True
+    cli_thread.start()
 
     # Start mitmproxy in asyncio main loop
     try:

@@ -1,0 +1,562 @@
+[PASS] No tariff for 142.250.196.195 (country: US)
+[PASS] No tariff for 142.250.196.194 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.204.33 (country: US)
+[PASS] No tariff for 142.250.204.33 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.196.194 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.204.33 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.204.33 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.196.202 (country: US)
+[PASS] No tariff for 142.250.196.202 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.204.40 (country: US)
+[PASS] No tariff for 142.250.204.40 (country: US)
+[ERROR] No country code for 104.19.147.8
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[PASS] No tariff for 65.8.161.33 (country: US)
+[ERROR] No country code for 104.19.147.8
+[PASS] No tariff for 142.250.204.40 (country: US)
+[ERROR] No country code for 104.19.147.8
+[PASS] No tariff for 142.250.204.40 (country: US)
+[PASS] No tariff for 142.250.204.40 (country: US)
+[PASS] No tariff for 3.169.137.34 (country: US)
+[PASS] No tariff for 3.169.55.41 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 13.228.204.223 (country: SG)
+[PASS] No tariff for 13.228.204.223 (country: SG)
+[PASS] No tariff for 16.170.51.131 (country: SE)
+[RETAIN] 13.114.197.251 (country: JP) for 2.115166187286377ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 13.114.197.251 (country: JP) for 3.6322712898254395ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 142.250.198.78 (country: US)
+[PASS] No tariff for 142.250.198.78 (country: US)
+[PASS] No tariff for 16.170.51.131 (country: SE)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.204.40 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 142.250.196.206 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 142.250.196.206 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[RETAIN] 122.220.195.248 (country: JP) for 5.597960948944092ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[ERROR] No country code for 172.66.0.227
+[PASS] No tariff for 13.35.166.116 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 142.250.204.46 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 13.107.246.73 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 142.250.196.206 (country: US)
+[PASS] No tariff for 142.250.198.78 (country: US)
+[PASS] No tariff for 142.250.196.206 (country: US)
+[RETAIN] 199.232.148.157 (country: JP) for 1.968824863433838ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 142.250.204.40 (country: US)
+[PASS] No tariff for 142.250.196.198 (country: US)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.198.74 (country: US)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.198.74 (country: US)
+[PASS] No tariff for 142.250.196.195 (country: US)
+[PASS] No tariff for 216.239.38.181 (country: US)
+[PASS] No tariff for 142.250.198.74 (country: US)
+[PASS] No tariff for 142.250.198.74 (country: US)
+[PASS] No tariff for 142.250.198.74 (country: US)
+[PASS] No tariff for 142.250.198.74 (country: US)
+[PASS] No tariff for 52.231.230.148 (country: KR)
+[PASS] No tariff for 142.250.198.74 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[RETAIN] 199.232.148.159 (country: JP) for 9.299373626708984ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 150.171.28.10 (country: US)
+[PASS] No tariff for 52.231.230.148 (country: KR)
+[ERROR] No country code for 172.66.0.227
+[PASS] No tariff for 23.96.124.68 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.196.206 (country: US)
+[PASS] No tariff for 23.96.124.68 (country: US)
+[PASS] No tariff for 142.250.196.206 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[ERROR] No country code for 172.66.0.227
+[PASS] No tariff for 216.239.36.178 (country: US)
+[ERROR] No country code for 172.66.0.227
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 216.239.36.178 (country: US)
+[PASS] No tariff for 23.96.124.68 (country: US)
+[PASS] No tariff for 216.239.38.181 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 216.239.38.181 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 23.96.124.68 (country: US)
+[RETAIN] 122.220.195.248 (country: JP) for 7.772219181060791ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 3.169.121.72 (country: US)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.5.201 (country: TW)
+[RETAIN] 54.150.207.254 (country: JP) for 2.1274209022521973ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 54.150.207.254 (country: JP) for 2.5726914405822754ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 163.28.5.201 (country: TW)
+[PASS] No tariff for 163.28.224.29 (country: TW)
+[RETAIN] 54.150.207.254 (country: JP) for 3.346240520477295ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 52.119.222.22 (country: JP) for 2.9189348220825195ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 163.28.224.29 (country: TW)
+[RETAIN] 3.114.141.241 (country: JP) for 2.1674633026123047ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 3.114.141.241 (country: JP) for 5.923092365264893ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 142.250.198.68 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 142.250.198.74 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 142.250.204.40 (country: US)
+[ERROR] No country code for 104.19.147.8
+[PASS] No tariff for 142.250.198.74 (country: US)
+[ERROR] No country code for 104.17.24.14
+[ERROR] No country code for 104.17.24.14
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 163.28.224.97 (country: TW)
+[RETAIN] 199.232.149.137 (country: JP) for 2.0271778106689453ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 2.219271659851074ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 163.28.5.51 (country: TW)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[RETAIN] 199.232.149.137 (country: JP) for 2.481389045715332ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[ERROR] No country code for 104.17.24.14
+[ERROR] No country code for 104.17.24.14
+[ERROR] No country code for 104.17.24.14
+[RETAIN] 199.232.149.137 (country: JP) for 5.350172519683838ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[ERROR] No country code for 104.19.147.8
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[RETAIN] 199.232.149.137 (country: JP) for 3.0103325843811035ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.1039834022521973ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[ERROR] No country code for 104.19.147.8
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[RETAIN] 199.232.149.137 (country: JP) for 5.207860469818115ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[RETAIN] 199.232.149.137 (country: JP) for 5.625045299530029ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[RETAIN] 199.232.149.137 (country: JP) for 2.945840358734131ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 2.514958381652832ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 151.101.2.104 (country: US)
+[PASS] No tariff for 3.169.121.87 (country: US)
+[ERROR] No country code for 104.19.147.8
+[PASS] No tariff for 163.28.5.51 (country: TW)
+[ERROR] No country code for 172.64.155.119
+[PASS] No tariff for 3.169.121.87 (country: US)
+[RETAIN] 199.232.149.137 (country: JP) for 4.286587238311768ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 151.101.2.104 (country: US)
+[RETAIN] 199.232.149.137 (country: JP) for 3.0943870544433594ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 163.28.5.51 (country: TW)
+[ERROR] No country code for 172.64.155.119
+[PASS] No tariff for 31.13.87.1 (country: TW)
+[RETAIN] 199.232.149.137 (country: JP) for 3.7262320518493652ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.7196993827819824ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.7091493606567383ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.7110209465026855ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.713059425354004ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.715384006500244ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.596985340118408ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.635716438293457ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 4.1344404220581055ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 163.28.224.97 (country: TW)
+[PASS] No tariff for 3.169.55.41 (country: US)
+[PASS] No tariff for 3.169.137.34 (country: US)
+[RETAIN] 199.232.149.137 (country: JP) for 4.412543773651123ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 4.372167587280273ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 4.348456859588623ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 4.40523624420166ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 4.388737678527832ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 4.363572597503662ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 4.381084442138672ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 4.375874996185303ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 4.3793559074401855ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 163.28.224.97 (country: TW)
+[RETAIN] 199.232.149.137 (country: JP) for 5.258274078369141ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 5.401647090911865ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 5.39705753326416ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 5.422055721282959ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 5.4189324378967285ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 5.421316623687744ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 5.8555006980896ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 5.984985828399658ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 5.982732772827148ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 6.006860733032227ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 5.999970436096191ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 6.3556671142578125ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 6.351256370544434ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 163.28.5.51 (country: TW)
+[ERROR] No country code for 172.64.155.119
+[PASS] No tariff for 3.169.121.87 (country: US)
+[PASS] No tariff for 163.28.224.97 (country: TW)
+[ERROR] No country code for 172.64.155.119
+[PASS] No tariff for 13.228.204.223 (country: SG)
+[RETAIN] 199.232.149.137 (country: JP) for 3.9284586906433105ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[ERROR] No country code for 172.64.155.119
+[PASS] No tariff for 13.228.204.223 (country: SG)
+[ERROR] No country code for 172.64.155.119
+[ERROR] No country code for 172.64.155.119
+[ERROR] No country code for 172.64.155.119
+[ERROR] No country code for 172.64.155.119
+[ERROR] No country code for 172.64.155.119
+[PASS] No tariff for 142.250.198.67 (country: US)
+[ERROR] No country code for 172.64.155.119
+[ERROR] No country code for 172.64.155.119
+[RETAIN] 199.232.149.137 (country: JP) for 3.711402416229248ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.607487678527832ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.3344030380249023ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 6.527304649353027ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.2603979110717773ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 199.232.149.137 (country: JP) for 3.1673312187194824ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[ERROR] No country code for 172.64.155.119
+[ERROR] No country code for 172.64.155.119
+[ERROR] No country code for 104.17.133.68
+[ERROR] No country code for 104.17.133.68
+[ERROR] No country code for 104.17.133.68
+[ERROR] No country code for 104.17.133.68
+[ERROR] No country code for 104.17.133.68
+[ERROR] No country code for 104.17.133.68
+[ERROR] No country code for 104.17.133.68
+[ERROR] No country code for 104.17.133.68
+[ERROR] No country code for 104.17.24.14
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.198.67 (country: US)
+[PASS] No tariff for 142.250.66.66 (country: US)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[ERROR] No country code for 104.16.80.73
+[ERROR] No country code for 104.17.133.68
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[ERROR] No country code for 104.17.133.68
+[ERROR] No country code for 104.17.133.68
+[PASS] No tariff for 163.28.5.35 (country: TW)
+[ERROR] No country code for 104.17.133.68
+[PASS] No tariff for 142.250.66.66 (country: US)
+[PASS] No tariff for 3.169.121.85 (country: US)
+[PASS] No tariff for 142.250.204.40 (country: US)
+[PASS] No tariff for 163.28.225.200 (country: TW)
+[ERROR] No country code for 104.17.133.68
+[PASS] No tariff for 3.169.121.107 (country: US)
+[PASS] No tariff for 3.169.36.122 (country: US)
+[PASS] No tariff for 182.161.73.136 (country: SG)
+[ERROR] No country code for 104.17.133.68
+[PASS] No tariff for 210.59.219.34 (country: TW)
+[PASS] No tariff for 43.249.38.110 (country: SG)
+[PASS] No tariff for 43.249.38.110 (country: SG)
+[PASS] No tariff for 31.13.87.5 (country: TW)
+[PASS] No tariff for 3.169.121.107 (country: US)
+[PASS] No tariff for 3.169.121.107 (country: US)
+[PASS] No tariff for 31.13.87.5 (country: TW)
+[PASS] No tariff for 3.169.121.107 (country: US)
+[RETAIN] 3.115.219.233 (country: JP) for 4.898333549499512ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 163.28.225.200 (country: TW)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 203.75.214.136 (country: TW)
+[PASS] No tariff for 34.111.12.34 (country: US)
+[PASS] No tariff for 34.107.150.21 (country: US)
+[PASS] No tariff for 3.169.137.36 (country: US)
+[PASS] No tariff for 182.161.73.136 (country: SG)
+[RETAIN] 119.63.198.143 (country: JP) for 2.201247215270996ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 31.13.87.36 (country: TW)
+[PASS] No tariff for 3.169.137.36 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[RETAIN] 119.63.198.189 (country: JP) for 9.235107898712158ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[RETAIN] 119.63.198.143 (country: JP) for 2.8517842292785645ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 3.169.40.181 (country: US)
+[PASS] No tariff for 103.43.91.210 (country: SG)
+[PASS] No tariff for 34.102.218.41 (country: US)
+[PASS] No tariff for 142.250.198.65 (country: US)
+[RETAIN] 119.63.198.143 (country: JP) for 2.1126151084899902ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 31.13.87.36 (country: TW)
+[PASS] No tariff for 31.13.87.36 (country: TW)
+[PASS] No tariff for 142.250.204.40 (country: US)
+[RETAIN] 119.63.198.188 (country: JP) for 1.8045783042907715ms
+[Error] 'TrumproxyAddon' object has no attribute 'tariffed_resume'[PASS] No tariff for 142.250.204.40 (country: US)
+[PASS] No tariff for 142.250.204.40 (country: US)
+[PASS] No tariff for 142.250.204.40 (country: US)
+[PASS] No tariff for 142.250.66.66 (country: US)
+[PASS] No tariff for 142.250.196.195 (country: US)
+[PASS] No tariff for 142.251.8.157 (country: US)
+[PASS] No tariff for 216.239.38.181 (country: US)
+[PASS] No tariff for 142.250.196.196 (country: US)
+[PASS] No tariff for 142.251.8.157 (country: US)
+[PASS] No tariff for 216.239.38.181 (country: US)
+[PASS] No tariff for 142.250.196.195 (country: US)
+[PASS] No tariff for 216.239.38.181 (country: US)
+[PASS] No tariff for 142.251.8.157 (country: US)
+[PASS] No tariff for 142.250.196.195 (country: US)
+[PASS] No tariff for 216.239.38.181 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.66.66 (country: US)
+[PASS] No tariff for 142.250.204.33 (country: US)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.204.38 (country: US)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.66.66 (country: US)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.204.38 (country: US)
+[PASS] No tariff for 142.250.77.14 (country: US)
+[PASS] No tariff for 142.250.204.38 (country: US)
+[ERROR] No country code for 104.17.133.68
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.204.33 (country: US)
+[PASS] No tariff for 142.250.204.33 (country: US)
+[PASS] No tariff for 142.250.196.196 (country: US)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 142.250.204.33 (country: US)
+[PASS] No tariff for 163.28.224.7 (country: TW)
+[PASS] No tariff for 163.28.224.7 (country: TW)
+[PASS] No tariff for 163.28.224.7 (country: TW)
+[PASS] No tariff for 163.28.224.7 (country: TW)
+[PASS] No tariff for 163.28.224.7 (country: TW)
+[PASS] No tariff for 163.28.224.7 (country: TW)
+[PASS] No tariff for 163.28.224.7 (country: TW)
+[PASS] No tariff for 163.28.5.17 (country: TW)
+[PASS] No tariff for 142.250.204.34 (country: US)
+[PASS] No tariff for 216.239.38.181 (country: US)
+[PASS] No tariff for 216.239.38.181 (country: US)
+[ERROR] No country code for 104.17.133.68
+[PASS] No tariff for 142.250.204.34 (country: US)

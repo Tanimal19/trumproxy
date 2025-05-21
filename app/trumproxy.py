@@ -67,12 +67,12 @@ class RetainedResponse:
 
     rtt_time: float
     """
-    The round trip time of the request.
+    The round trip time of the request. (ms)
     """
 
     retain_time: float
     """
-    The time to retain the response.
+    The time to retain the response. (s)
     """
 
 
@@ -112,7 +112,7 @@ class TrumproxyAddon:
             rtt_time = flow.response.timestamp_end - flow.request.timestamp_start
             retain_time = rtt_time * (rule.rate)
             self.f.write(
-                f"[RETAIN] {from_ip} (country: {from_country_code}) for {retain_time}ms\n"
+                f"[RETAIN] {from_ip} (country: {from_country_code}) for {retain_time}s\n"
             )
 
             self.retain_responses[flow.id] = RetainedResponse(

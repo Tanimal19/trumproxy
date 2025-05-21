@@ -60,11 +60,6 @@ class RetainedResponse:
     The IP address of the client.
     """
 
-    to_country_code: str
-    """
-    The country code of the client.
-    """
-
     recv_time: float
     """
     The time when the response was received.
@@ -96,8 +91,6 @@ class TrumproxyAddon:
             from_country_code = country.country.iso_code
 
             to_ip = flow.client_conn.peername[0]
-            # to_country = self.geo_identifier.country(to_ip)
-            to_country_code = None
 
             if from_country_code is None:
                 self.f.write(f"[ERROR] No country code for {from_ip}\n")
@@ -128,7 +121,6 @@ class TrumproxyAddon:
                 from_ip=from_ip,
                 from_country_code=from_country_code,
                 to_client_ip=to_ip,
-                to_country_code=to_country_code,
                 recv_time=flow.response.timestamp_end,
                 rtt_time=rtt_time,
                 retain_time=retain_time,
@@ -169,6 +161,7 @@ class TrumproxyAddon:
         :param tariff: The tariff rate (0-100).
         :param dropped: Whether to drop the traffic or not.
         """
+        iso_code = iso_code.upper()
         self.tariff_rules.setdefault(iso_code, TariffRule(rate=tariff, dropped=dropped))
 
     def remove_tariff_rule(self, iso_code):
@@ -176,6 +169,7 @@ class TrumproxyAddon:
         Remove the tariff rule for the given country code.
         :param iso_code: The ISO 3166-1 alpha-2 country code.
         """
+        iso_code = iso_code.upper()
         if iso_code in self.tariff_rules:
             self.tariff_rules.pop(iso_code)
 

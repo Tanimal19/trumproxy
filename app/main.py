@@ -6,6 +6,13 @@ from trumproxy import proxy_instance
 from flask_app import app, save_rules
 
 
+async def clean_proxy_instance():
+    while True:
+        await asyncio.sleep(60)
+        proxy_instance.clean_dropped_responses()
+        print("clean dropped responses")
+
+
 def run_flask():
     app.run(host="0.0.0.0", port=5000, debug=False)
 
@@ -32,7 +39,7 @@ def control():
                 traffic = proxy_instance.get_retain_traffic()
                 for id, t in traffic.items():
                     print(
-                        f"{id}: {t.request_url}, size: {t.size} bytes, from: {t.from_ip}, to: {t.to_client_ip}, rtt: {t.rtt_time} ms, retain time: {t.retain_time} s"
+                        f"{id}: {t.request_url}, size: {t.size} bytes, from: {t.from_ip}, rtt: {t.rtt_time} ms, retain time: {t.retain_time} s"
                     )
             elif cmd.startswith("set"):
                 _, country, rate, dropped = cmd.split()
@@ -68,6 +75,9 @@ async def run_proxy():
 
     print("Starting mitmproxy...")
 
+    # Start the cleaning task
+    asyncio.create_task(clean_proxy_instance())
+
     await m.run()
 
 
@@ -78,9 +88,9 @@ if __name__ == "__main__":
     flask_thread.start()
 
     # Start CLI in a thread
-    cli_thread = threading.Thread(target=control)
-    cli_thread.daemon = True
-    cli_thread.start()
+    # cli_thread = threading.Thread(target=control)
+    # cli_thread.daemon = True
+    # cli_thread.start()
 
     # Start mitmproxy in asyncio main loop
     try:

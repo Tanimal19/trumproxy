@@ -142,11 +142,13 @@ def get_packets():
         packets.append(
             {
                 "packet_id": pid,
+                "size": packet.size,
                 "source_ip": packet.from_ip,
-                "destination_ip": packet.to_client_ip,
                 "source_country": packet.from_country_code,
                 "timestamp": packet.recv_time,
-                "status": "dropped" if packet.retain_time == 0 else "delayed",
+                "rtt_time": packet.rtt_time,
+                "retain_time": packet.retain_time,
+                "status": "dropped" if packet.retain_time <= 0 else "delayed",
                 "applied_rule_id": country_code_map.get(packet.from_country_code),
             }
         )

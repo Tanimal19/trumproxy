@@ -135,20 +135,96 @@ function addRule() {
 }
 
 function editRule(rule_id) {
-  const rule = mockRules.find((r) => r.rule_id === rule_id);
-  if (!rule) return;
-  const newDrop = confirm("是否要丟棄封包？");
-  if (newDrop) {
-    updateRule(rule_id, rule.country_code, 0, true);
-  } else {
-    const newDelay = prompt("請輸入新的延遲百分比", rule.delay_percentage);
-    if (newDelay === null) return;
-    updateRule(rule_id, rule.country_code, parseInt(newDelay), false);
+  // 先移除可能已存在的舊 modal
+  const existingModal = document.getElementById("edit-rule-modal");
+  if (existingModal) {
+    existingModal.remove();
   }
+
+  // 建立 modal 容器
+  const modal = document.createElement("div");
+  modal.id = "edit-rule-modal";
+  modal.style.position = "fixed";
+  modal.style.left = "50%";
+  modal.style.top = "50%";
+  modal.style.transform = "translate(-50%, -50%)";
+  modal.style.backgroundColor = "white";
+  modal.style.padding = "20px";
+  modal.style.border = "1px solid #ccc";
+  modal.style.borderRadius = "8px";
+  modal.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+  modal.style.zIndex = "1000"; // 確保在最上層
+
+  // Modal 內容
+  modal.innerHTML = `
+    <h3 style="margin-top:0;">編輯規則 (ID: ${rule_id})</h3>
+    <div style="margin-bottom: 15px;">
+      <label>
+        <input type="checkbox" id="modal-drop-checkbox"> 丟棄封包 (Drop Packets)
+      </label>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <label for="modal-delay-input">延遲百分比:</label>
+      <input type="number" id="modal-delay-input" min="0" style="width: 80px; margin-left: 5px;">
+    </div>
+    <div style="text-align: right;">
+      <button id="modal-confirm-button" style="margin-right: 10px; padding: 8px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">確認</button>
+      <button id="modal-cancel-button" style="padding: 8px 15px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">取消</button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // 獲取 modal 內的元素
+  const dropCheckbox = modal.querySelector("#modal-drop-checkbox");
+  const delayInput = modal.querySelector("#modal-delay-input");
+  const confirmButton = modal.querySelector("#modal-confirm-button");
+  const cancelButton = modal.querySelector("#modal-cancel-button");
+
+  // Drop checkbox 事件監聽
+  dropCheckbox.addEventListener("change", function () {
+    delayInput.disabled = this.checked;
+    if (this.checked) {
+      delayInput.value = ""; // 清空延遲值
+    }
+  });
+
+  // 確認按鈕事件
+  confirmButton.addEventListener("click", () => {
+    const newDrop = dropCheckbox.checked;
+    let newDelay = 0;
+
+    if (!newDrop) {
+      const delayValue = parseInt(delayInput.value, 10);
+      if (isNaN(delayValue) || delayValue < 0) {
+        alert("請輸入有效的延遲百分比");
+        return;
+      }
+      newDelay = delayValue;
+    }
+
+    updateRule(rule_id, newDelay, newDrop);
+    modal.remove(); // 關閉 modal
+  });
+
+  // 取消按鈕事件
+  cancelButton.addEventListener("click", () => {
+    modal.remove(); // 關閉 modal
+  });
+
+  // 可選：點擊 modal 外部關閉 (如果需要)
+  // modal.addEventListener('click', function(event) {
+  //   if (event.target === modal) {
+  //     modal.remove();
+  //   }
+  // });
 }
 
-function updateRule(rule_id, country_code, delay_percentage, drop) {
-  const body = JSON.stringify({ country_code, delay_percentage, drop });
+function updateRule(rule_id, delay_percentage, drop) {
+  const body = JSON.stringify({
+    delay_percentage: delay_percentage,
+    drop,
+  });
   fetch(`/api/rules/${rule_id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -182,45 +258,18 @@ function deleteRule(rule_id) {
 }
 
 function fetchPackets() {
-  const mockPackets = [
-    {
-      packet_id: "abc123",
-      source_ip: "192.0.2.1",
-      source_country: "US",
-      destination_ip: "192.0.2.5",
-      destination_country: "US",
-      timestamp: "2025-05-14T07:30:00Z",
-      status: "delayed",
-      applied_rule_id: 1,
-    },
-    {
-      packet_id: "def456",
-      source_ip: "203.0.113.5",
-      source_country: "AU",
-      destination_ip: "192.0.2.10",
-      destination_country: "CN",
-      timestamp: "2025-05-14T07:35:00Z",
-      status: "dropped",
-      applied_rule_id: 2,
-    },
-    {
-      packet_id: "abc123",
-      source_ip: "192.0.2.10",
-      source_country: "TW",
-      destination_ip: "192.0.2.100",
-      destination_country: "US",
-      timestamp: "2025-05-14T07:30:00Z",
-      status: "delayed",
-      applied_rule_id: 3,
-    },
-  ];
-  displayPackets(mockPackets);
+  fetch("/api/packets", {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .then((data) => displayPackets(data.packets))
 }
 
 function displayPackets(packets) {
   const tbody = document.querySelector("#packet-table tbody");
   tbody.innerHTML = "";
   packets.forEach((p) => {
+    console.log(p);
     const sourceInfo = countryMap[p.source_country] || {
       name: p.source_country,
       flag: "",
@@ -233,19 +282,16 @@ function displayPackets(packets) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
 <td>${p.packet_id}</td>
-<td>${p.source_ip} <br>
+<td>${p.size}</td>
+<td>${p.source_ip}</td>
 <td><img src="${
       sourceInfo.flag
     }" style="width:20px;height:14px;vertical-align:middle;"> ${
       sourceInfo.name
     }</td>
-<td>${p.destination_ip} <br>
-<td><img src="${
-      destInfo.flag
-    }" style="width:20px;height:14px;vertical-align:middle;"> ${
-      destInfo.name
-    }</td>
 <td>${new Date(p.timestamp).toLocaleString()}</td>
+<td>${p.rtt_time}ms</td>
+<td>${p.retain_time}s</td>
 <td><span class="badge ${p.status}">${statusText}</span></td>`;
     tbody.appendChild(tr);
   });

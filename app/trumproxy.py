@@ -55,11 +55,6 @@ class RetainedResponse:
     The country code of the server.
     """
 
-    to_client_ip: str
-    """
-    The IP address of the client.
-    """
-
     recv_time: float
     """
     The time when the response was received.
@@ -80,6 +75,7 @@ class TrumproxyAddon:
     def __init__(self):
         self.tariff_rules: dict[str, TariffRule] = {}
         self.retain_responses: dict[str, RetainedResponse] = {}
+        self.dropped_responses: dict[str, RetainedResponse] = {}
 
         self.geo_identifier = geoip2.database.Reader(GEOIP_DB_PATH)
         self.f = open("trumproxy.log", "w", 1)
@@ -89,8 +85,6 @@ class TrumproxyAddon:
             from_ip = flow.server_conn.peername[0]
             country = self.geo_identifier.country(from_ip)
             from_country_code = country.country.iso_code
-
-            to_ip = flow.client_conn.peername[0]
 
             if from_country_code is None:
                 self.f.write(f"[ERROR] No country code for {from_ip}\n")
@@ -106,6 +100,15 @@ class TrumproxyAddon:
 
             if rule.dropped:
                 self.f.write(f"[DROP] {from_ip} (country: {from_country_code})\n")
+                self.dropped_responses[flow.id] = RetainedResponse(
+                    request_url=flow.request.pretty_url,
+                    size=len(flow.response.content),
+                    from_ip=from_ip,
+                    from_country_code=from_country_code,
+                    recv_time=flow.response.timestamp_end,
+                    rtt_time=flow.response.timestamp_end - flow.request.timestamp_start,
+                    retain_time=-1,
+                )
                 flow.kill()
                 return
 
@@ -120,7 +123,6 @@ class TrumproxyAddon:
                 size=len(flow.response.content),
                 from_ip=from_ip,
                 from_country_code=from_country_code,
-                to_client_ip=to_ip,
                 recv_time=flow.response.timestamp_end,
                 rtt_time=rtt_time,
                 retain_time=retain_time,
@@ -133,11 +135,13 @@ class TrumproxyAddon:
             self.f.write(f"[Error] {e}\n")
 
     def done(self):
+        self._cleaning_task.cancel()
         self.f.close()
 
     async def retain_flow(self, flow: http.HTTPFlow, retain_time: float):
         await asyncio.sleep(retain_time)
-        if not flow.response:
+        if flow.response:
+            # del self.retain_responses[flow.id]
             self.retain_responses.pop(flow.id, None)
             flow.resume()
 
@@ -152,7 +156,9 @@ class TrumproxyAddon:
         """
         Get the retained traffic.
         """
-        return self.retain_responses
+        full_dict = self.retain_responses.copy()
+        full_dict.update(self.dropped_responses)
+        return full_dict
 
     def set_tariff_rule(self, iso_code, tariff, dropped=False):
         """
@@ -162,7 +168,7 @@ class TrumproxyAddon:
         :param dropped: Whether to drop the traffic or not.
         """
         iso_code = iso_code.upper()
-        self.tariff_rules.setdefault(iso_code, TariffRule(rate=tariff, dropped=dropped))
+        self.tariff_rules[iso_code] = TariffRule(rate=tariff, dropped=dropped)
 
     def remove_tariff_rule(self, iso_code):
         """
@@ -172,6 +178,12 @@ class TrumproxyAddon:
         iso_code = iso_code.upper()
         if iso_code in self.tariff_rules:
             self.tariff_rules.pop(iso_code)
+
+    def clean_dropped_responses(self):
+        """
+        Clean the dropped responses.
+        """
+        self.dropped_responses = {}
 
 
 proxy_instance = TrumproxyAddon()

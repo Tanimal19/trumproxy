@@ -73,14 +73,14 @@ async def run_proxy():
 
 if __name__ == "__main__":
     # Start Flask in a thread
-    # flask_thread = threading.Thread(target=run_flask)
-    # flask_thread.daemon = True
-    # flask_thread.start()
+    flask_thread = threading.Thread(target=run_flask)
+    flask_thread.daemon = True
+    flask_thread.start()
 
     # Start CLI in a thread
-    cli_thread = threading.Thread(target=control)
-    cli_thread.daemon = True
-    cli_thread.start()
+    # cli_thread = threading.Thread(target=control)
+    # cli_thread.daemon = True
+    # cli_thread.start()
 
     # Start mitmproxy in asyncio main loop
     try:

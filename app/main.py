@@ -3,7 +3,7 @@ import threading
 from mitmproxy.tools.dump import DumpMaster
 from mitmproxy.options import Options
 from trumproxy import proxy_instance
-from flask_app import app, save_rules
+from flask_app import app
 
 
 def run_flask():
@@ -86,3 +86,4 @@ if __name__ == "__main__":
         asyncio.run(run_proxy())
     except KeyboardInterrupt:
         print("Shutting down...")
+        proxy_instance.done()

@@ -319,9 +319,9 @@ function displayPackets(packets) {
       sourceInfo.name
     }</td>
 <td>${p.size}</td>
-<td>${new Date(p.timestamp).toLocaleString()}</td>
-<td>${p.rtt_time}ms</td>
-<td>${p.retain_time}s</td>
+<td>${new Date(p.recv_time).toLocaleString()}</td>
+<td>${parseFloat(p.rtt_time.toFixed(4))}ms</td>
+<td>${p.retain_time ? parseFloat(p.retain_time.toFixed(4)) : 0}s</td>
 <td><span class="badge ${p.status}">${statusText}</span></td>`;
     tbody.appendChild(tr);
   });

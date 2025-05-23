@@ -4,18 +4,8 @@ import asyncio
 from dataclasses import dataclass
 from mitmproxy import http
 import geoip2.database
-import logging
-
 
 GEOIP_DB_PATH = "./GeoLite2-Country.mmdb"
-
-# Set up logging
-logging.basicConfig(
-    filename="trumproxy.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
-
 
 @dataclass
 class TariffRule:
@@ -54,7 +44,7 @@ class Packet:
     The country code of the server.
     """
 
-    recv_time: float
+    recv_time: int
     """
     The time when the response was received. (milliseconds since epoch)
     """
@@ -75,14 +65,14 @@ class Packet:
     """
 
 
+
 class TrumproxyAddon:
     def __init__(self):
         self.tariff_rules: dict[str, TariffRule] = {}
         self.cache_packets: dict[str, Packet] = {}
         self.geo_identifier = geoip2.database.Reader(GEOIP_DB_PATH)
-        self.logger = logging.getLogger(__name__)
 
-        self.logger.info("Trumproxy started.")
+        print("Trumproxy started.")
 
     def response(self, flow: http.HTTPFlow):
         try:
@@ -90,16 +80,16 @@ class TrumproxyAddon:
             country = self.geo_identifier.country(from_ip)
             from_country_code = country.country.iso_code
 
-            self.logger.info(
+            print(
                 f"[{flow.id}] Get response from {flow.request.pretty_url} from {from_ip}"
             )
 
             if from_country_code is None:
-                self.logger.warning(f"[{flow.id}] No country code found")
+                print(f"[{flow.id}] No country code found")
                 return
 
             if from_country_code not in self.tariff_rules:
-                self.logger.info(
+                print(
                     f"[{flow.id}] Pass packet since no tariff rule on {from_country_code}"
                 )
                 return
@@ -112,18 +102,18 @@ class TrumproxyAddon:
                     size=len(flow.response.content),
                     from_ip=from_ip,
                     from_country_code=from_country_code,
-                    recv_time=flow.response.timestamp_end,
+                    recv_time=int(flow.response.timestamp_end * 1000),
                     rtt_time=flow.response.timestamp_end - flow.request.timestamp_start,
                     retain_time=None,
                     status="dropped",
                 )
-                self.logger.info(f"[{flow.id}] Drop packet from {from_country_code}")
+                print(f"[{flow.id}] Drop packet from {from_country_code}")
                 flow.kill()
                 return
 
             rtt_time = flow.response.timestamp_end - flow.request.timestamp_start
             retain_time = rtt_time * (rule.rate)
-            self.logger.info(
+            print(
                 f"[{flow.id}] Retain packet from {from_country_code} for {retain_time}s"
             )
 
@@ -132,7 +122,7 @@ class TrumproxyAddon:
                 size=len(flow.response.content),
                 from_ip=from_ip,
                 from_country_code=from_country_code,
-                recv_time=flow.response.timestamp_end,
+                recv_time=int(flow.response.timestamp_end * 1000),
                 rtt_time=rtt_time,
                 retain_time=retain_time,
                 status="retained",
@@ -142,18 +132,18 @@ class TrumproxyAddon:
             flow.intercept()
 
         except Exception as e:
-            self.logger.exception(e)
+            print(f"[{flow.id}] Error: {e}")
 
     def done(self):
         self.geo_identifier.close()
         self.cache_packets.clear()
         self.tariff_rules.clear()
-        self.logger.info("Trumproxy closed.")
+        print("Trumproxy closed.")
 
     async def retain_flow(self, flow: http.HTTPFlow, retain_time: float):
         await asyncio.sleep(retain_time)
         if flow.response:
-            self.logger.info(f"[{flow.id}] Release packet")
+            print(f"[{flow.id}] Release packet")
             self.cache_packets.pop(flow.id, None)
             flow.resume()
 
@@ -162,7 +152,7 @@ class TrumproxyAddon:
         """
         Get all tariff rules.
         """
-        self.logger.info("get_tariff_rules()")
+        print("get_tariff_rules()")
         return self.tariff_rules
 
     def set_tariff_rule(self, iso_code, tariff, dropped=False):
@@ -174,7 +164,7 @@ class TrumproxyAddon:
             tariff (int): The tariff rate (0-100).
             dropped (bool): Whether to drop the traffic or not.
         """
-        self.logger.info(f"set_tariff_rule({iso_code}, {tariff}, {dropped})")
+        print(f"set_tariff_rule({iso_code}, {tariff}, {dropped})")
         self.tariff_rules[iso_code.upper()] = TariffRule(rate=tariff, dropped=dropped)
 
     def remove_tariff_rule(self, iso_code):
@@ -184,7 +174,7 @@ class TrumproxyAddon:
         Params:
             iso_code (str): The ISO 3166-1 alpha-2 country code.
         """
-        self.logger.info(f"remove_tariff_rule({iso_code})")
+        print(f"remove_tariff_rule({iso_code})")
         if iso_code in self.tariff_rules:
             self.tariff_rules.pop(iso_code.upper(), None)
 
@@ -192,14 +182,12 @@ class TrumproxyAddon:
         """
         Get current cached packets. (include retained and dropped)
         """
-        self.logger.info("get_cached_packets()")
         return self.cache_packets
 
     def clean_cached_packets(self):
         """
         Clean the cached packets.
         """
-        self.logger.info("clean_cached_packets()")
         self.cache_packets.clear()
 
 

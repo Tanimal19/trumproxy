@@ -8,7 +8,9 @@ h2 {
   color: #333;
 }
 table {
+  table-layout: fixed;
   width: 100%;
+  overflow-y: scroll;
   border-collapse: collapse;
   margin-top: 10px;
   background-color: #fff;
@@ -18,6 +20,9 @@ td {
   padding: 8px;
   border: 1px solid #ccc;
   text-align: left;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow: hidden;
 }
 th {
   background-color: #eee;
@@ -44,14 +49,13 @@ button:hover {
   font-weight: bold;
   color: white;
 }
-.delayed {
+.retained {
   background-color: #facc15;
   color: #000;
 }
 .dropped {
   background-color: #f44336;
 }
-
 
 #container {
   display: flex;
@@ -92,8 +96,8 @@ button:hover {
   display: flex;
   flex-direction: row;
 }
-.ts-dropdown{
-   width: 300px
+.ts-dropdown {
+  width: 300px;
 }
 
 input[type="checkbox"] {
@@ -143,7 +147,7 @@ input[type="number"] {
 
 .close-button::before,
 .close-button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -160,7 +164,6 @@ input[type="number"] {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-
 #news-headline {
   position: absolute;
   top: 383px;
@@ -174,7 +177,7 @@ input[type="number"] {
 #news-revolving {
   position: absolute;
   top: 412px;
-  left: 67px;
+  left: 66px;
   font-weight: 400;
   font-size: 12px;
   font-family: sans-serif;

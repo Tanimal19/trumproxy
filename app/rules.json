@@ -1,18 +1,1 @@
-{
-  "AL": {
-    "rate": 50,
-    "dropped": false
-  },
-  "TW": {
-    "rate": 80,
-    "dropped": false
-  },
-  "CA": {
-    "rate": 0,
-    "dropped": true
-  },
-  "TZ": {
-    "rate": 70,
-    "dropped": false
-  }
-}
+{}

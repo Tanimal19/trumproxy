@@ -7,26 +7,45 @@
       href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
-      href="../static/style.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+    <link rel="stylesheet" href="../static/style.css" />
   </head>
   <body>
-    <div style="font-size: xx-large; font-weight: bolder; margin-bottom: 10px;">Trumproxy Dashboard</div>
-    <div style="margin-bottom: 30px;">Impose tariffs on packets from other countries. Make local network great again!</div>
+    <div style="font-size: xx-large; font-weight: bolder; margin-bottom: 10px">
+      Trumproxy Dashboard
+    </div>
+    <div style="margin-bottom: 30px">
+      Impose tariffs on packets from other countries. Make local network great
+      again!
+    </div>
 
-    <div id="container" style="display: flex; flex-direction: row; align-items: center; justify-content: start;gap: 100px;">
-      <img src="../static/trumptalking.png" id="trumptalking" alt="trumptalking picture" style="width: 600px;" />
+    <div
+      id="container"
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
+        gap: 100px;
+      "
+    >
+      <img
+        src="../static/trumptalking.png"
+        id="trumptalking"
+        alt="trumptalking picture"
+        style="width: 600px"
+      />
       <div id="news-headline">ANNOUNCE SOME TARIFF!</div>
       <div id="news-revolving">Message Here</div>
 
       <div id="form-group">
-        <div style="font-size: larger;font-weight: bold;">新增規則</div>
+        <div style="font-size: larger; font-weight: bold">新增規則</div>
         <div class="form-inline">
           <label>選擇國家</label>
           <select id="country-select" placeholder="搜尋國家..."></select>
@@ -37,15 +56,18 @@
         </div>
         <div class="form-inline">
           <label>延遲百分比</label>
-          <input
-          type="number"
-          id="delay-input"
-          min="0"
-          max="100"
-          value="0"
-          />
+          <input type="number" id="delay-input" min="0" max="100" value="0" />
         </div>
-        <div style="display: flex; flex-direction: row; align-items: center; width: 100%; justify-content: center; margin-top: 20px;">
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            justify-content: center;
+            margin-top: 20px;
+          "
+        >
           <button onclick="addRule()">新增規則</button>
         </div>
       </div>
@@ -63,24 +85,33 @@
       <tbody></tbody>
     </table>
 
-    <div style="display: flex; flex-direction: row; align-items: end; justify-content: space-between;">
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: space-between;
+      "
+    >
       <h2 style="margin-top: 40px">封包監控</h2>
-      <button id="clear-button" class="destructive" onclick="clearPackets()">清除歷史</button>
+      <button id="clear-button" class="destructive" onclick="clearPackets()">
+        清除歷史
+      </button>
     </div>
     <table id="packet-table">
       <thead>
         <tr>
-          <th>來源位址</th>
+          <th style="width: 30%">來源位址</th>
           <th>來源 IP</th>
           <th>來源國</th>
           <th>封包大小</th>
-          <th>收到時間</th>
+          <th style="width: 15%">收到時間</th>
           <th>RTT</th>
           <th>扣留時間</th>
           <th>狀態</th>
         </tr>
       </thead>
-      <tbody style="overflow-y: scroll;"></tbody>
+      <tbody></tbody>
     </table>
 
     <script src="../static/main.js"></script>

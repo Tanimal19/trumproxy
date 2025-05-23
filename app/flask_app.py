@@ -113,4 +113,5 @@ def get_packets():
     ]
     proxy_instance.clean_cached_packets()
 
+    print(f"packets: {packets}")
     return jsonify({"packets": packets}), 200

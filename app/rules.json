@@ -1,1 +1,10 @@
-{}
+{
+  "JP": {
+    "rate": 0,
+    "dropped": true
+  },
+  "CN": {
+    "rate": 60,
+    "dropped": false
+  }
+}

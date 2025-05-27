@@ -1,7 +1,9 @@
 # Trumproxy
 
 impose tariff on network traffic  
-using [mitmproxy](https://mitmproxy.org/) and [wireguard](https://www.wireguard.com/)
+using [mitmproxy](https://mitmproxy.org/) and [wireguard](https://www.wireguard.com/)  
+
+**This is a final project of NTU CNL 2025**  
 
 ## For server
 
